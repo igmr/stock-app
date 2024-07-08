@@ -56,6 +56,19 @@
                         <p>Brands</p>
                     </a>
                 </li>
+                <li class="nav-header">REPORTS</li>
+                <li class="nav-item">
+                    <a href="{{ route('app.report.stock') }}" class="nav-link {{ $menu == 'report.stock' ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-book"></i>
+                        <p>Stock</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('app.report.history') }}" class="nav-link {{ $menu == 'report.history' ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-book"></i>
+                        <p>History</p>
+                    </a>
+                </li>
                 <li class="nav-header">ADMINISTRATION</li>
                 <li class="nav-item">
                     <a href="{{ route('app.user.index') }}" class="nav-link {{ $menu == 'user' ? 'active' : '' }}">

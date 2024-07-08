@@ -62,4 +62,46 @@ class DashboardController extends Controller
             ORDER BY stock.created_at DESC;'
         );
     }
+
+    public function stock()
+    {
+        $data = [
+            'menu'         => 'report.stock',
+        ];
+        return view('app.report.stock', compact('data'));
+    }
+
+    public function listStock()
+    {
+        $query = DB::select('SELECT brands.description AS brand, printers.description AS printer, cartridges.description AS cartridge,
+             cartridges.color,if(ISNULL(stock), 0, stock) AS stock
+        FROM brands
+        LEFT JOIN printers ON printers.brand_id = brands.id
+        LEFT JOIN cartridges ON cartridges.printer_id = printers.id
+        LEFT JOIN (SELECT stock.cartridge_id, SUM(stock._quantity) AS stock
+            FROM stock
+            WHERE 1=1
+            AND stock.deleted_at IS NULL
+            GROUP BY  stock.cartridge_id) AS stock ON stock.cartridge_id = cartridges.id
+        WHERE 1=1
+            AND printers.id > 1
+        ORDER BY printers.description ASC');
+        return datatables($query)->toJson();
+    }
+
+    public function history()
+    {
+        $data = [
+            'menu'         => 'report.history',
+        ];
+        return view('app.report.history', compact('data'));
+    }
+
+    public function listHistory()
+    {
+        $report = Stock::with('user')->with('cartridge', function ($query) {
+            return $query->with('printer');
+        })->get();
+        return datatables($report)->toJson();
+    }
 }

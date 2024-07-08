@@ -74,15 +74,14 @@ Route::middleware('auth')->prefix('app')->group(function () {
         Route::delete('/{maintenance}',      [MaintenanceController::class, 'destroy'])->name('app.maintenance.destroy');
         Route::get('/{maintenance}/follow',  [MaintenanceController::class, 'follow'])->name('app.maintenance.follow');
         Route::put('/{maintenance}/follow',  [MaintenanceController::class, 'follow_action'])->name('app.maintenance.follow_action');
-        Route::get('/{maintenance}/delivery',[MaintenanceController::class, 'delivery'])->name('app.maintenance.delivery');
-        Route::put('/{maintenance}/delivery',[MaintenanceController::class, 'delivery_action'])->name('app.maintenance.delivery_action');
+        Route::get('/{maintenance}/delivery', [MaintenanceController::class, 'delivery'])->name('app.maintenance.delivery');
+        Route::put('/{maintenance}/delivery', [MaintenanceController::class, 'delivery_action'])->name('app.maintenance.delivery_action');
         Route::get('/{maintenance}/cancel',  [MaintenanceController::class, 'cancel'])->name('app.maintenance.cancel');
         Route::put('/{maintenance}/cancel',  [MaintenanceController::class, 'cancel_action'])->name('app.maintenance.cancel_action');
 
         Route::get('/{maintenance}/file',    [MaintenanceController::class, 'file'])->name('app.maintenance.file');
         Route::put('/{maintenance}/upload',  [MaintenanceController::class, 'upload'])->name('app.maintenance.upload');
     });
-
     Route::prefix('user')->group(function () {
         Route::get('/',                       [UserController::class, 'index'])->name('app.user.index');
         Route::get('/datatable',              [UserController::class, 'datatable'])->name('app.user.datatable');
@@ -93,5 +92,11 @@ Route::middleware('auth')->prefix('app')->group(function () {
         Route::delete('/{user}',              [UserController::class, 'destroy'])->name('app.user.destroy');
         Route::get('/{user}/change-password', [UserController::class, 'change_password'])->name('app.user.change_password');
         Route::put('/{user}/change-password', [UserController::class, 'change_password_action'])->name('app.user.change_password_action');
+    });
+    Route::prefix('report')->group(function () {
+        Route::get('/history',  [DashboardController::class, 'history'])->name('app.report.history');
+        Route::get('/stock',    [DashboardController::class, 'stock'])->name('app.report.stock');
+        Route::get('/_history', [DashboardController::class, 'listHistory'])->name('app.report.list.history');
+        Route::get('/_stock',   [DashboardController::class, 'listStock'])->name('app.report.list.stock');
     });
 });
