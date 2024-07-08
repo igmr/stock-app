@@ -87,7 +87,7 @@
                 <!-- Left navbar links -->
                 <div class="navbar-nav">
                     <div class="nav-item">
-                        <i class="fas fa-book mr-1"></i>
+                        <i class="fas fa-history mr-1"></i>
                         History
                     </div>
                 </div>

@@ -61,6 +61,9 @@ class BrandController extends Controller
      */
     public function edit(Brand $brand)
     {
+        if ($brand->id == 1) {
+            return redirect()->route('app.brand.index');
+        }
         $data = [
             'menu'  => 'brand',
             'brand' => $brand,
@@ -73,6 +76,9 @@ class BrandController extends Controller
      */
     public function update(BrandFormRequest $req, Brand $brand)
     {
+        if ($brand->id == 1) {
+            return redirect()->route('app.brand.index');
+        }
         $data = $req->validated();
         $brand->description = $data['description'] ?? $brand->description;
         if ($brand->save()) {
@@ -83,6 +89,9 @@ class BrandController extends Controller
     public function destroy(Brand $brand)
     {
         try {
+            if ($brand->id == 1) {
+                return Response()->json(['success' => false], Response::HTTP_BAD_REQUEST);
+            }
             DB::beginTransaction();
             $brand->status = 'Inactive';
             $brand->save();
@@ -99,7 +108,7 @@ class BrandController extends Controller
 
     public function datatable()
     {
-        $brands = Brand::with('user')->get();
+        $brands = Brand::with('user')->where('brands.id', '>', 1)->get();
         return datatables($brands)->toJson();
     }
     public function select2()

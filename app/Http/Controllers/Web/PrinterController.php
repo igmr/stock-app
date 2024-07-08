@@ -69,6 +69,9 @@ class PrinterController extends Controller
      */
     public function edit(Printer $printer)
     {
+        if ($printer->id == 1) {
+            return redirect()->route('app.printer.index');
+        }
         $brands = Brand::select(['id', 'description'])->get();
         $data = [
             'menu'    => 'printer',
@@ -83,6 +86,9 @@ class PrinterController extends Controller
      */
     public function update(PrinterFormRequest $req, Printer $printer)
     {
+        if ($printer->id == 1) {
+            return redirect()->route('app.printer.index');
+        }
         $data = $req->validated();
         $printer->brand_id = $data['brand'] ?? $printer->brand_id;
         $printer->serial = $data['serial'] ?? $printer->serial;
@@ -101,6 +107,9 @@ class PrinterController extends Controller
     public function destroy(Printer $printer)
     {
         try {
+            if ($printer->id == 1) {
+                return Response()->json(['success' => false], Response::HTTP_BAD_REQUEST);
+            }
             DB::beginTransaction();
             $printer->status = 'Inactive';
             $printer->save();
@@ -117,7 +126,7 @@ class PrinterController extends Controller
 
     public function datatable()
     {
-        $printer = Printer::with('user')->with('brand')->get();
+        $printer = Printer::with('user')->with('brand')->where('printers.id', '>',1)->get();
         return datatables($printer)->toJson();
     }
 }

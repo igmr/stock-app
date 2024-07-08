@@ -59,13 +59,13 @@
                 <li class="nav-header">REPORTS</li>
                 <li class="nav-item">
                     <a href="{{ route('app.report.stock') }}" class="nav-link {{ $menu == 'report.stock' ? 'active' : '' }}">
-                        <i class="nav-icon fas fa-book"></i>
+                        <i class="nav-icon fas fa-cubes"></i>
                         <p>Stock</p>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('app.report.history') }}" class="nav-link {{ $menu == 'report.history' ? 'active' : '' }}">
-                        <i class="nav-icon fas fa-book"></i>
+                        <i class="nav-icon fas fa-history"></i>
                         <p>History</p>
                     </a>
                 </li>

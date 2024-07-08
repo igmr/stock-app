@@ -74,6 +74,9 @@ class CartridgeController extends Controller
      */
     public function edit(Cartridge $cartridge)
     {
+        if ($cartridge->id == 1) {
+            return redirect()->route('app.cartridge.index');
+        }
         $brands = Brand::select(['id', 'description'])->get();
         $printers = Printer::select(['id', 'description'])->get();
         $colors = ['Black', 'Yellow', 'Blue', 'Magenta'];
@@ -92,7 +95,10 @@ class CartridgeController extends Controller
      */
     public function update(CartridgeFormRequest $req, Cartridge $cartridge)
     {
-        $data= $req->validated();
+        if ($cartridge->id == 1) {
+            return redirect()->route('app.cartridge.index');
+        }
+        $data = $req->validated();
         $cartridge->printer_id = $data['printer'] ?? $cartridge->printer_id;
         $cartridge->brand_id = $data['brand'] ?? $cartridge->brand_id;
         $cartridge->model = $data['model'] ?? $cartridge->model;
@@ -108,6 +114,9 @@ class CartridgeController extends Controller
      */
     public function destroy(Cartridge $cartridge)
     {
+        if ($cartridge->id == 1) {
+            return Response()->json(['success' => false], Response::HTTP_BAD_REQUEST);
+        }
         try {
             DB::beginTransaction();
             $cartridge->status = 'Inactive';
@@ -125,7 +134,7 @@ class CartridgeController extends Controller
 
     public function datatable()
     {
-        $cartridge = Cartridge::with('user')->with('printer')->with('brand')->get();
+        $cartridge = Cartridge::with('user')->with('printer')->with('brand')->where('cartridges.id', '>', 1)->get();
         return datatables($cartridge)->toJson();
     }
 }

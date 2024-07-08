@@ -80,7 +80,7 @@
                 <!-- Left navbar links -->
                 <div class="navbar-nav">
                     <div class="nav-item">
-                        <i class="fas fa-book mr-1"></i>
+                        <i class="fas fa-cubes mr-1"></i>
                         Stock
                     </div>
                 </div>
