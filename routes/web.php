@@ -94,9 +94,9 @@ Route::middleware('auth')->prefix('app')->group(function () {
         Route::put('/{user}/change-password', [UserController::class, 'change_password_action'])->name('app.user.change_password_action');
     });
     Route::prefix('report')->group(function () {
-        Route::get('/history',  [DashboardController::class, 'history'])->name('app.report.history');
-        Route::get('/stock',    [DashboardController::class, 'stock'])->name('app.report.stock');
-        Route::get('/_history', [DashboardController::class, 'listHistory'])->name('app.report.list.history');
-        Route::get('/_stock',   [DashboardController::class, 'listStock'])->name('app.report.list.stock');
+        Route::get('/history',    [DashboardController::class, 'history'])->name('app.report.history');
+        Route::get('/_history',   [DashboardController::class, 'listHistory'])->name('app.report.list.history');
+        Route::get('/_stock',     [DashboardController::class, 'listStock'])->name('app.report.list.stock');
+        Route::get('/_stock_min', [DashboardController::class, 'listStockMin'])->name('app.report.list.stock.min');
     });
 });

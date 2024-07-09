@@ -12,12 +12,12 @@
                 table = $('#table-report-stock').DataTable({
                     progressing: true,
                     autoWidth: false,
-                    pageLength: 5,
+                    pageLength: 4,
                     scrollX: true,
                     scrollY: true,
                     lengthMenu: [
-                        [5, 10, 20, -1],
-                        [5, 10, 20, 'All']
+                        [4, 8, 16, -1],
+                        [4, 8, 16, 'All']
                     ],
                     ajax: url,
                     columns: [{

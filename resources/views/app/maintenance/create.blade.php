@@ -40,7 +40,7 @@
                     <!-- Right navbar links -->
                     <div class="navbar-nav ml-auto">
                         <div class="nav-item">
-                            <a href="{{ route('app.printer.index') }}" class="btn btn-outline-danger btn-sm mr-2">
+                            <a href="{{ route('app.maintenance.index') }}" class="btn btn-outline-danger btn-sm mr-2">
                                 <i class="fas fa-ban"></i> Cancel
                             </a>
                         </div>

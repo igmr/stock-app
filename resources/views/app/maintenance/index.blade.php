@@ -46,7 +46,7 @@
                             data: 'user_name'
                         },
                         {
-                            title: 'Created at',
+                            title: 'Date',
                             data: null,
                             render: ({
                                 created_at
@@ -57,7 +57,7 @@
                                     month: '2-digit',
                                     day: '2-digit',
                                 };
-                                return `${createdAt.toLocaleDateString('es-MX', option)}`;
+                                return `${createdAt.toLocaleDateString('en-CA', option)}`;
                             }
                         },
                         {
@@ -66,11 +66,29 @@
                         },
                         {
                             title: 'Status',
-                            data: 'status'
+                            data: null,
+                            className: 'text-center',
+                            render: ({
+                                status
+                            }) => {
+                                if (status == 'Pending') {
+                                    return `<span class="badge badge-info"> ${status}</span>`;
+                                }
+                                if (status == 'Delivery') {
+                                    return `<span class="badge badge-success"> ${status}</span>`;
+                                }
+                                if (status == 'Progress') {
+                                    return `<span class="badge badge-warning"> ${status}</span>`;
+                                }
+                                if (status == 'Cancel') {
+                                    return `<span class="badge badge-danger"> ${status}</span>`;
+                                }
+                                return `${status}`;
+                            }
                         },
                         {
                             title: 'Actions',
-                            class:'text-center',
+                            class: 'text-center',
                             data: null,
                             render: (data) => {
                                 let status = false;

@@ -54,7 +54,7 @@ class MaintenanceController extends Controller
         $maintenance->user_name = $data['user_name'];
         $maintenance->cost = $data['cost'];
         $maintenance->observation_init = $data['observation'];
-        $maintenance->status = 'Active';
+        $maintenance->status = 'Pending';
         if ($maintenance->save()) {
             return redirect()->route('app.maintenance.index');
         }
@@ -142,7 +142,7 @@ class MaintenanceController extends Controller
         $follow->user_id = Auth::user()->id;
         $follow->maintenance_id = $maintenance_id;
         $follow->observation = $data['observation'];
-        $follow->status = 'Active';
+        $follow->status = 'Progress';
         if ($follow->save()) {
             return redirect()->route('app.maintenance.index');
         }

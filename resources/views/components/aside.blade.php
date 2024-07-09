@@ -2,11 +2,11 @@
     <!-- Brand Logo -->
     <a href="{{ route('app.dashboard') }}" class="brand-link">
         <!--
-        <img src="../../dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
-            style="opacity: .8">
+        <img src="{{ url('assets/img/logo-black.png') }}" alt="AdminLTE Logo"
+        style="opacity: .8" width="100%">
         -->
-        <i class="fas fa-cubes ml-4"></i>
-        <span class="brand-text font-weight-light">Stock</span>
+        <i class="fas fa-tint ml-3 mr-2 title-color"></i>
+        <span class="brand-text font-weight-light">Sto<b class="title-color">CK</b></span>
     </a>
 
     <!-- Sidebar -->
@@ -58,13 +58,8 @@
                 </li>
                 <li class="nav-header">REPORTS</li>
                 <li class="nav-item">
-                    <a href="{{ route('app.report.stock') }}" class="nav-link {{ $menu == 'report.stock' ? 'active' : '' }}">
-                        <i class="nav-icon fas fa-cubes"></i>
-                        <p>Stock</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ route('app.report.history') }}" class="nav-link {{ $menu == 'report.history' ? 'active' : '' }}">
+                    <a href="{{ route('app.report.history') }}"
+                        class="nav-link {{ $menu == 'report.history' ? 'active' : '' }}">
                         <i class="nav-icon fas fa-history"></i>
                         <p>History</p>
                     </a>
@@ -79,7 +74,7 @@
                 <li class="nav-item">
                     <a href="#" class="nav-link"
                         onclick="event.preventDefault(); document.querySelector('#logout-form').submit();">
-                        <i class="fas fa-sign-out-alt"></i>
+                        <i class="nav-icon fas fa-sign-out-alt"></i>
                         <p>Logout</p>
                     </a>
                     <form id="logout-form" action="{{ route('auth.login.destroy') }}" method="POST"

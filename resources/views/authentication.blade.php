@@ -16,11 +16,29 @@
 
     <style>
         .dark-mode {
-            background-color: #001f3f!important;
+            background: url({{ url('assets/img/backgroup-noise-200x200.png') }}) repeat fixed;
         }
 
         .card {
             border-radius: 10px;
+        }
+
+        .login-box-msg>i {
+            font-size: 100px;
+        }
+
+        .title-color {
+            background: -moz-linear-gradient(top, #d71fef 0%, #0083f5 100%);
+            background: -webkit-linear-gradient(top, #d71fef 0%, #0083f5 100%);
+            background: linear-gradient(to right, #d71fef 0%, #0083f5 100%);
+            -webkit-background-clip: text;
+            -moz-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .login-box-msg>p {
+            font-size: 40px;
         }
     </style>
 
@@ -30,12 +48,17 @@
     <div class="login-box">
         <!-- /.login-logo -->
         <div class="card card-outline">
-            <div class="card-header text-center">
-                <a href="../../index2.html" class="h1"><b>Admin</b>LTE</a>
-            </div>
             <div class="card-body">
-                <p class="login-box-msg">Sign in to start your session</p>
-
+                <!--
+                <img src="{{ url('assets/img/logo-black.png') }}" alt="Inductotherm Heating & Welding Mexico"
+                    width="100%">
+                -->
+                <div class="login-box-msg">
+                    <i class="fas fa-tint title-color"></i>
+                    <br>
+                    <p>Sto<b class="title-color">CK</b></p>
+                </div>
+                <br />
                 <form action="{{ route('auth.login.store') }}" method="post">
                     @method('POST')
                     @csrf

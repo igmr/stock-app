@@ -26,26 +26,71 @@
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ url('assets/dist/css/adminlte.min.css') }}">
     <style>
+        html {
+            color-scheme: dark;
+        }
+
+        .title-color {
+            background: -moz-linear-gradient(top, #d71fef 0%, #0083f5 100%);
+            background: -webkit-linear-gradient(top, #d71fef 0%, #0083f5 100%);
+            background: linear-gradient(to right, #d71fef 0%, #0083f5 100%);
+            -webkit-background-clip: text;
+            -moz-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
         .layout-boxed {
-            background-color: #001f3f!important;
+            background: url({{ url('assets/img/backgroup-noise-200x200.png') }}) repeat fixed;
         }
 
         .card,
         .navbar-subtitle {
-            border-radius: 10px;
+            border-radius: 15px;
         }
 
         .card>.bg-navy {
-            border-radius: 10px 10px 0px 0px;
+            border-radius: 15px 15px 0px 0px;
         }
 
         .nav-header {
-            background-color: #242b33 !important;
-            color: #777777 !important;
+            background-color: #22272a !important;
+            color: #ffffff !important;
+            border-bottom: 1px solid #6e7379;
         }
 
-        .products-list .product-info{
+        .products-list .product-info {
             margin-left: 0px !important;
+        }
+
+        [class*=sidebar-dark-] {
+            background-color: #272c30 !important;
+        }
+
+        .dark-mode .main-footer {
+            background-color: #272c30;
+            border-color: #4b545c;
+        }
+
+        .dark-mode .card {
+            background-color: #22272a;
+            color: #fff;
+        }
+
+        .bg-dark {
+            background-color: #272c30 !important;
+        }
+
+        .nav-icon {
+            color: #bec5cb !important;
+        }
+
+        .dark-mode .content-wrapper {
+            background-color: #313437;
+            color: #fff;
+            padding-top: 10px;
+            padding-left: 20px;
+            padding-right: 20px;
         }
     </style>
 </head>

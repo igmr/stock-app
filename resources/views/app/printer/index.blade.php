@@ -48,20 +48,16 @@
                             data: 'description',
                         },
                         {
-                            title: 'Serial',
-                            data: 'serial',
+                            title: 'Brand',
+                            data: 'brand.description',
                         },
                         {
                             title: 'Model',
                             data: 'model',
                         },
                         {
-                            title: 'Brand',
-                            data: 'brand.description',
-                        },
-                        {
-                            title: 'User',
-                            data: 'user.name',
+                            title: 'Serial',
+                            data: 'serial',
                         },
                         {
                             title: 'Actions',

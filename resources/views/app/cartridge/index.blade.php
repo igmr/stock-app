@@ -44,28 +44,51 @@
                             data: 'id'
                         },
                         {
-                            title:'Cartridge',
+                            title: 'Cartridge',
                             data: 'description',
                         },
                         {
-                            title:'Model',
+                            title: 'Model',
                             data: 'model',
                         },
                         {
-                            title:'Color',
-                            data: 'color',
+                            title: 'Color',
+                            className: 'text-center',
+                            data: null,
+                            render: ({
+                                color
+                            }) => {
+                                if (color == 'Magenta') {
+                                    return ` <i class="fas fa-tint fa-palette" style="color: #f012be"></i>`;
+                                }
+                                if (color == 'Negro' || color == 'Black') {
+                                    return ` <i class="fas fa-tint fa-palette" style="color: #000000"></i>`;
+                                }
+                                if (color == 'Amarillo' || color == 'Yellow') {
+                                    return ` <i class="fas fa-tint fa-palette" style="color: #ffc107"></i>`;
+                                }
+                                if (color == 'Cian' || color == 'Blue') {
+                                    return ` <i class="fas fa-tint fa-palette" style="color: #3c8dbc"></i>`;
+                                }
+                                return `${color == null ? '': $color}`;
+                            }
                         },
                         {
-                            title:'Printer',
+                            title: 'Printer',
                             data: 'printer.description',
                         },
                         {
                             title: 'Brand',
-                            data: 'brand.description',
-                        },
-                        {
-                            title: 'User',
-                            data: 'user.name',
+                            data: null,
+                            render: ({
+                                brand
+                            }) => {
+                                let id = brand.id;
+                                if (id <= 1) {
+                                    return ``;
+                                }
+                                return `${brand.description}`;
+                            }
                         },
                         {
                             title: 'Actions',

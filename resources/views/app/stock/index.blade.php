@@ -9,87 +9,117 @@
             let token = document.querySelector('meta[name="csrf-token"]').content;
             let url = `${base_url}/app/stock/datatable`;
             let table = null;
-            const btnTrash = async(stock_id)=>{
-                const url = `${base_url}/app/stock/${stock_id}`;
-                const request = await fetch(url, {
-                    method: 'DELETE',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        Accept: 'application/json',
-                        'X-CSRF-Token': token,
+            const btnTrash = async (stock_id) => {
+                    const url = `${base_url}/app/stock/${stock_id}`;
+                    const request = await fetch(url, {
+                        method: 'DELETE',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            Accept: 'application/json',
+                            'X-CSRF-Token': token,
+                        }
+                    });
+                    const response = await request.json();
+                    console.log(response);
+                    if (response.success) {
+                        table.ajax.reload();
                     }
-                });
-                const response = await request.json();
-                console.log(response);
-                if (response.success) {
-                    table.ajax.reload();
+                    return;
                 }
-                return;
-            }
-            (() => {
-                table = $('#table-stock').DataTable({
-                    progressing: true,
-                    autoWidth: false,
-                    pageLength: 5,
-                    scrollX: true,
-                    scrollY: true,
-                    lengthMenu: [
-                        [5, 10, 20, -1],
-                        [5, 10, 20, 'All']
-                    ],
-                    ajax: url,
-                    columns: [{
-                            title: '#',
-                            data: 'id'
-                        },
-                        {
-                            title: 'Cartridge',
-                            data: 'cartridge.description',
-                        },
-                        {
-                            title: 'Printer',
-                            data: 'cartridge.printer.description',
-                        },
-                        {
-                            title: 'Created at',
-                            data: null,
-                            render: ({created_at}) => {
-                                const createdAt = new Date(created_at);
-                                const option ={
-                                    year:'numeric',
-                                    month:'2-digit',
-                                    day: '2-digit',
-                                };
-                                return `${createdAt.toLocaleDateString('es-MX', option)}`;
-                            }
-                        },
-                        {
-                            title: 'User',
-                            data: 'user.name',
-                        },
-                        {
-                            title: 'Quantity',
-                            className: 'text-right',
-                            data: '_quantity',
-                        },
-                        {
-                            title: 'Actions',
-                            className:'text-center',
-                            data: null,
-                            render: (data) => {
-                                return `<div class="btn-group">
+                (() => {
+                    table = $('#table-stock').DataTable({
+                        progressing: true,
+                        autoWidth: false,
+                        pageLength: 5,
+                        scrollX: true,
+                        scrollY: true,
+                        lengthMenu: [
+                            [5, 10, 20, -1],
+                            [5, 10, 20, 'All']
+                        ],
+                        ajax: url,
+                        columns: [{
+                                title: '#',
+                                data: 'id'
+                            },
+                            {
+                                title: 'Cartridge',
+                                data: 'cartridge.description',
+                            },
+                            {
+                                title: 'Printer',
+                                data: 'cartridge.printer.description',
+                            },
+                            {
+                                title: 'Date',
+                                data: null,
+                                render: ({
+                                    created_at
+                                }) => {
+                                    const createdAt = new Date(created_at);
+                                    const option = {
+                                        year: 'numeric',
+                                        month: '2-digit',
+                                        day: '2-digit',
+                                    };
+                                    return `${createdAt.toLocaleDateString('en-CA', option)}`;
+                                }
+                            },
+                            {
+                                title: 'Color',
+                                className: 'text-center',
+                                data: null,
+                                render: (data) => {
+                                    let color = data.cartridge.color;
+                                    if (color == 'Magenta') {
+                                        return ` <i class="fas fa-tint fa-palette" style="color: #f012be"></i>`;
+                                    }
+                                    if (color == 'Negro' || color == 'Black') {
+                                        return ` <i class="fas fa-tint fa-palette" style="color: #000000"></i>`;
+                                    }
+                                    if (color == 'Amarillo' || color == 'Yellow') {
+                                        return ` <i class="fas fa-tint fa-palette" style="color: #ffc107"></i>`;
+                                    }
+                                    if (color == 'Cian' || color == 'Blue') {
+                                        return ` <i class="fas fa-tint fa-palette" style="color: #3c8dbc"></i>`;
+                                    }
+                                    return `${color == null ? '': $color}`;
+                                }
+                            },
+                            {
+                                title: 'Qty',
+                                className: 'text-right',
+                                data: null,
+                                render: ({
+                                    _quantity,
+                                    type
+                                }) => {
+                                    if (type == 0) {
+                                        return `<span class="badge badge-danger"> ${_quantity}</span>`;
+                                    }
+                                    if (type == 1) {
+                                        return `<span class="badge badge-success"> ${_quantity}</span>`;
+                                    }
+                                }
+                            },
+                            {
+                                title: 'Actions',
+                                className: 'text-center',
+                                data: null,
+                                render: (data) => {
+                                    return `<div class="btn-group">
                                     <button type="button" @class(['btn', 'btn-outline-danger', 'btn-sm']) onClick="btnTrash(${data.id})"
                                         data-toggle="tooltip" data-placement="top" title="Delete stock - ${data.observation}"><i
                                             @class(['fa', 'fa-trash'])></i></button>
                                 </div>`;
+                                }
                             }
-                        }
-                    ],
-                    order: [
-                        [0, 'desc']
-                    ],
-                });
-            })()
+                        ],
+                        order: [
+                            [0, 'desc']
+                        ],
+                    });
+                })()
         </script>
     @endslot
 

@@ -25,6 +25,21 @@
                             data: 'id'
                         },
                         {
+                            title: 'Date',
+                            data: null,
+                            render: ({
+                                created_at
+                            }) => {
+                                const createddAt = new Date(created_at);
+                                const option = {
+                                    year: 'numeric',
+                                    month: '2-digit',
+                                    day: '2-digit',
+                                }
+                                return `${createddAt.toLocaleDateString('en-CA', option)}`;
+                            }
+                        },
+                        {
                             title: 'Model',
                             data: 'cartridge.model',
                         },
@@ -38,27 +53,27 @@
                         },
                         {
                             title: 'Color',
+                            className: 'text-center',
                             data: null,
                             render: (data) => {
                                 color = data.cartridge.color;
                                 if (color == 'Magenta') {
-                                    return `<span class="badge badge-pill bg-fuchsia color-palette">${color}</span>`;
+                                    return ` <i class="fas fa-tint fa-palette" style="color: #f012be"></i>`;
                                 }
                                 if (color == 'Negro' || color == 'Black') {
-                                    return `<span class="badge badge-pill bg-black"> ${color}</span>`;
+                                    return ` <i class="fas fa-tint fa-palette" style="color: #000000"></i>`;
                                 }
                                 if (color == 'Amarillo' || color == 'Yellow') {
-                                    return `<span class="badge badge-pill bg-warning color-palette"> ${color}</span>`;
+                                    return ` <i class="fas fa-tint fa-palette" style="color: #ffc107"></i>`;
                                 }
                                 if (color == 'Cian' || color == 'Blue') {
-                                    return `<span class="badge badge-pill bg-lightblue color-palette"> ${color}</span>`;
+                                    return ` <i class="fas fa-tint fa-palette" style="color: #3c8dbc"></i>`;
                                 }
-                                return `${color}`;
-
+                                return `${color == null ? '': $color}`;
                             }
                         },
                         {
-                            title: 'Quanityt',
+                            title: 'Qty',
                             className: 'text-right',
                             data: null,
                             render: (data) => {

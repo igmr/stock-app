@@ -49,10 +49,6 @@
                             width: '1000%',
                         },
                         {
-                            title: 'User',
-                            data: 'user.name',
-                        },
-                        {
                             title: 'Actions',
                             data: null,
                             render: (data) => {
