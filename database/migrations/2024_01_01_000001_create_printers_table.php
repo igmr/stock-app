@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('model', 65)->nullable();
             $table->string('description', 65)->nullable();
             $table->string('image', 255)->nullable();
+            $table->string('location', 255)->nullable();
             $table->text('observation')->nullable();
             $table->double('cost')->nullable()->default(0);
             $table->string('status',15)->nullable()->default('Active');
