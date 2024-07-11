@@ -154,6 +154,60 @@
         </section>
         <section class="content">
             <div class="row">
+                <div class="col-lg-3 col-6">
+                    <a href="{{ route('app.stock.create') }}">
+                        <div class="small-box bg-black color-palette shadow-lg border-full">
+                            <div class="inner">
+                                <h4>Stock</h4>
+                                <p>New</p>
+                            </div>
+                            <div class="icon icon-black">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-3 col-6">
+                    <a href="{{ route('app.maintenance.create') }}">
+                        <div class="small-box bg-fuchsia color-palette shadow-lg border-full">
+                            <div class="inner">
+                                <h4>Maintenance</h4>
+                                <p>New</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fas fa-tools"></i>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-3 col-6">
+                    <a href="{{ route('app.cartridge.create') }}">
+                        <div class="small-box bg-blue color-palette shadow-lg border-full">
+                            <div class="inner">
+                                <h4>Cartridge</h4>
+                                <p>New</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fas fa-cubes"></i>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-3 col-6">
+                    <a href="{{ route('app.printer.create') }}">
+                        <div class="small-box bg-orange color-palette shadow-lg border-full">
+                            <div class="inner">
+                                <h4>Printer</h4>
+                                <p>New</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fas fa-print"></i>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="row">
                 <div class="col-12">
                     <div class="card shadow-lg">
                         <div class="card-header bg-navy">

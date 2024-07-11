@@ -49,6 +49,10 @@
             border-radius: 15px;
         }
 
+        .border-full {
+            border-radius: 15px;
+        }
+
         .card>.bg-navy {
             border-radius: 15px 15px 0px 0px;
         }
@@ -92,6 +96,19 @@
             padding-left: 20px;
             padding-right: 20px;
         }
+
+        .small-box h4 {
+            font-size: 2rem;
+            font-weight: 400;
+            margin: 0 0 10px;
+            padding: 0;
+            white-space: nowrap;
+        }
+
+        .icon-black {
+            color: rgb(255 249 249 / 15%) !important;
+        }
+
     </style>
 </head>
 
