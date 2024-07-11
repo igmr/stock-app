@@ -23,7 +23,7 @@
                     ajax: url_stock_min,
                     columns: [{
                             title: 'Model',
-                            data: 'cartridge_model',
+                            data: 'model',
                         },
                         {
                             title: 'Cartridge',

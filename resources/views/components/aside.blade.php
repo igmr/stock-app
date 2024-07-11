@@ -37,6 +37,12 @@
                 </li>
                 <li class="nav-header">CATALOGS</li>
                 <li class="nav-item">
+                    <a href="{{ route('app.brand.index') }}" class="nav-link {{ $menu == 'brand' ? 'active' : '' }}">
+                        <i class="nav-icon fab fa-qq"></i>
+                        <p>Brands</p>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a href="{{ route('app.printer.index') }}"
                         class="nav-link  {{ $menu == 'printer' ? 'active' : '' }}">
                         <i class="nav-icon fas fa-print"></i>
@@ -48,12 +54,6 @@
                         class="nav-link {{ $menu == 'cartridge' ? 'active' : '' }}">
                         <i class="nav-icon fas fa-cubes"></i>
                         <p>Cartridges</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ route('app.brand.index') }}" class="nav-link {{ $menu == 'brand' ? 'active' : '' }}">
-                        <i class="nav-icon fab fa-qq"></i>
-                        <p>Brands</p>
                     </a>
                 </li>
                 <li class="nav-header">REPORTS</li>
