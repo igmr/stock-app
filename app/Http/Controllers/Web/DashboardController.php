@@ -18,32 +18,20 @@ class DashboardController extends Controller
 
     public function listStockMin()
     {
-        $stockMin = DB::table('stock')
-            ->join('cartridges', 'cartridges.id', '=', 'stock.cartridge_id')
-            ->join('printers', 'printers.id', '=', 'cartridges.printer_id')
-            ->join('brands', 'brands.id', '=', 'printers.brand_id')
-            ->select([
-                'brands.description AS brand', 'printers.description AS printer',
-                'cartridges.model AS cartridge_model', 'cartridges.description AS cartridge', 'cartridges.color', DB::raw('SUM(stock._quantity) AS quantity')
-            ])
-            ->groupBy(['brands.description', 'printers.description', 'cartridges.model', 'cartridges.description', 'cartridges.color'])
-            ->havingRaw('SUM(stock._quantity) < ?', [2])
-            ->orderByDesc('stock.created_at')
-            ->get();
+        $stockMin = DB::select(
+            'SELECT cartridges.id, cartridges.description AS cartridge, cartridges.color, cartridges.model
+                , printers.id AS printer_id,  printers.description AS printer
+                , brands.id AS brand_id, brands.description AS brand
+                , IFNULL(_stock.quantity, 0) AS quantity
+            FROM cartridges
+            INNER JOIN printers ON  printers.id = cartridges.printer_id
+            INNER JOIN brands ON cartridges.brand_id = brands.id 
+            LEFT JOIN _stock ON cartridges.id = _stock.cartridge_id
+            WHERE 1=1
+                AND cartridges.id > 1
+                AND IFNULL(_stock.quantity, 0) < 2
+        ');
         return datatables($stockMin)->toJson();
-
-        return DB::select(
-            'SELECT brands.description AS brand, printers.description AS printer,
-                cartridges.model, cartridges.description AS cartridge, SUM(stock._quantity) AS quantity
-            FROM stock
-                INNER JOIN cartridges ON stock.cartridge_id = cartridges.id
-                INNER JOIN printers ON cartridges.printer_id = printers.id
-                INNER JOIN brands ON printers.brand_id = brands.id
-            WHERE 1
-            GROUP BY brands.description, printers.description, cartridges.model, cartridges.description
-            HAVING SUM(stock._quantity) < 2
-            ORDER BY stock.created_at DESC;'
-        );
     }
 
     public function listStock()
