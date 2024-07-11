@@ -47,7 +47,7 @@
 <body class="hold-transition login-page dark-mode">
     <div class="login-box">
         <!-- /.login-logo -->
-        <div class="card card-outline">
+        <div class="card card-outline shadow-lg">
             <div class="card-body">
                 <!--
                 <img src="{{ url('assets/img/logo-black.png') }}" alt="Inductotherm Heating & Welding Mexico"

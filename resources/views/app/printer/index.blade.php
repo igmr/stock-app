@@ -86,7 +86,7 @@
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
-            <nav class="navbar navbar-expand navbar-light bg-navy navbar-subtitle">
+            <nav class="navbar navbar-expand navbar-light bg-navy navbar-subtitle shadow-lg">
                 <!-- Left navbar links -->
                 <div class="navbar-nav">
                     <div class="nav-item">
@@ -107,7 +107,7 @@
         <!-- Main content -->
         <section class="content">
             <!-- Default box -->
-            <div class="card">
+            <div class="card shadow-lg">
                 <div class="card-body table-responsive">
                     <table id="table-printer" class="table table-striped table-bordered table-hover"></table>
                 </div>

@@ -142,7 +142,7 @@
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
-            <nav class="navbar navbar-expand navbar-light bg-navy navbar-subtitle">
+            <nav class="navbar navbar-expand navbar-light bg-navy navbar-subtitle shadow-lg">
                 <!-- Left navbar links -->
                 <div class="navbar-nav">
                     <div class="nav-item">
@@ -155,7 +155,7 @@
         <section class="content">
             <div class="row">
                 <div class="col-12">
-                    <div class="card">
+                    <div class="card shadow-lg">
                         <div class="card-header bg-navy">
                             <h3 class="card-title"><i class="fas fa-sort mr-1"></i> Create orders</h3>
                         </div>
@@ -169,7 +169,7 @@
                 </div>
                 <!-- /.col-12 -->
                 <div class="col-12">
-                    <div class="card">
+                    <div class="card shadow-lg">
                         <div class="card-header bg-navy">
                             <h3 class="card-title"><i class="fas fa-cubes mr-1"></i> Stock</h3>
                         </div>
