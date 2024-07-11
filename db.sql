@@ -224,3 +224,20 @@ CREATE TABLE IF NOT EXISTS follows
 -- ************************************************************************* --
 INSERT INTO users(id, name, email, password, status, created_at) VALUES
     (001, 'demo', 'demo@demo.com', '$2y$12$.WqbqlNf54WrTfAl2Qe.Zuea13qUZ9dK75pKHHp.RIfvau1qpEbAu', 'Activo', NOW()); -- Password#321
+
+INSERT INTO brands (id, description, status, created_at, updated_at, deleted_at) VALUES
+    (001, '(NINGUNO)', 'Active', '2024-01-01 00:00:00', '2024-01-01 00:00:00', NULL);
+
+INSERT INTO cartridges (id, printer_id, model, image, description, color, status, created_at, updated_at, deleted_at) VALUES
+    (001, 001, '(Ninguno)'        , NULL, '(Ninguno)'                                                    , '(Ninguno)', 'Active', '2024-01-01 00:00:00', '2024-01-01 00:00:00', NULL);
+
+INSERT INTO printers (id, brand_id, serial, model, description, image, location, observation, status, created_at, updated_at, deleted_at) VALUES
+    (001, 001, '(NINGUNO)'       , '(NINGUNO)'  , '(NINGUNO)'                                , NULL, '(NINGUNO)'                             , NULL           , 'Active', '2024-01-01 00:00:00', '2024-01-01 00:00:00', NULL);
+
+DROP VIEW IF EXISTS _stock;
+CREATE VIEW IF NOT EXISTS _stock AS
+SELECT cartridge_id, SUM(_quantity) AS quantity
+FROM stock
+WHERE 1=1
+	AND status = 'Active'
+GROUP BY cartridge_id;
