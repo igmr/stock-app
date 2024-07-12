@@ -1,0 +1,41 @@
+version: '3.9'
+
+services:
+    mariadb:
+        container_name: laravel-stock-mariadb
+        image: mariadb:latest
+        restart: always
+        ports:
+            - 3306:3306
+        networks:
+            - laravel-network
+        environment:
+            - MARIADB_ROOT_PASSWORD=<PASSWORD_STRONG>
+            - MARIADB_DATABASE=<DATABASE_NAME>
+            - MARIADB_USER=<DATABASE_USERNAME>
+            - MARIADB_PASSWORD=<PASSWORD_STRONG>
+        volumes:
+            - /volume2/docker/laravel-stock/mariadb:/var/lib/mysql
+
+    laravel:
+        container_name: laravel-stock-app
+        image: 'bitnami/laravel:latest'
+        volumes:
+            - /volume2/docker/laravel-stock/app:/app
+        networks:
+            - laravel-network
+        depends_on:
+            - mariadb
+        environment:
+            - APP_URL=<IP_SERVER>:<PORT>
+            - DB_DATABASE=<DATABASE_NAME>
+            - DB_USERNAME=<DATABASE_USERNAME>
+            - DB_PORT=<DATABASE_PORT>
+            - DB_HOST=mariadb
+            - DB_PASSWORD=<PASSWORD_STRONG>
+        ports:
+            - <PORT>:8000
+
+networks:
+    laravel-network:
+        driver: bridge
