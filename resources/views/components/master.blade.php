@@ -23,6 +23,8 @@
     <!-- Select2 -->
     <link rel="stylesheet" href="{{ url('assets/plugins/select2/css/select2.min.css') }}">
     <link rel="stylesheet" href="{{ url('assets/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}">
+    <!-- SweetAlert2 -->
+    <link rel="stylesheet" href="{{ url('assets/plugins/sweetalert2-11.12.4/dist/sweetalert2.min.css') }}">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ url('assets/dist/css/adminlte.min.css') }}">
     <style>
@@ -154,6 +156,8 @@
     <script src="{{ url('assets/plugins/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js') }}"></script>
     <!-- Select2 -->
     <script src="{{ url('assets/plugins/select2/js/select2.full.min.js') }}"></script>
+    <!-- SweetAlert2 -->
+    <script src="{{ url('assets/plugins/sweetalert2-11.12.4/dist/sweetalert2.min.js') }}"></script>
     <!-- AdminLTE App -->
     <script src="{{ url('assets/dist/js/adminlte.min.js') }}"></script>
     <!-- Custom JS -->

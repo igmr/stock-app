@@ -10,6 +10,33 @@
             let url = `${base_url}/app/brand/datatable`;
             let table = null;
             const btnTrash = async (brand_id) => {
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showDenyButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, delete it!"
+                }).then(async result => {
+                    if (result.isConfirmed) {
+                        const response = await trash(brand_id);
+                        if (response.success) {
+                            table.ajax.reload();
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "The record has been deleted.",
+                                icon: "success"
+                            });
+                        }
+
+                    } else if (result.isDenied) {
+                        console.log('cancel')
+                    }
+                });
+            }
+
+            const trash = async (brand_id) => {
                 const url = `${base_url}/app/brand/${brand_id}`;
                 const request = await fetch(url, {
                     method: 'DELETE',
@@ -19,12 +46,7 @@
                         'X-CSRF-Token': token,
                     }
                 });
-                const response = await request.json();
-                console.log(response);
-                if (response.success) {
-                    table.ajax.reload();
-                }
-                return;
+                return await request.json();
             }
 
             (() => {

@@ -9,7 +9,35 @@
             let token = document.querySelector('meta[name="csrf-token"]').content;
             let url = `${base_url}/app/cartridge/datatable`;
             let table = null;
-            const btnTrash = async (cartridge_id) => {
+
+            const btnTrash = (cartridge_id) => {
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showDenyButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, delete it!"
+                }).then(async result => {
+                    if (result.isConfirmed) {
+                        const response = await trash(cartridge_id);
+                        if (response.success) {
+                            table.ajax.reload();
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "The record has been deleted.",
+                                icon: "success"
+                            });
+                        }
+
+                    } else if (result.isDenied) {
+                        console.log('cancel')
+                    }
+                });
+            }
+
+            const trash = async (cartridge_id) => {
                 const url = `${base_url}/app/cartridge/${cartridge_id}`;
                 const request = await fetch(url, {
                     method: 'DELETE',
@@ -19,12 +47,7 @@
                         'X-CSRF-Token': token,
                     }
                 });
-                const response = await request.json();
-                console.log(response);
-                if (response.success) {
-                    table.ajax.reload();
-                }
-                return;
+                return await request.json();
             }
 
             (() => {
@@ -75,7 +98,13 @@
                         },
                         {
                             title: 'Printer',
-                            data: 'printer.description',
+                            data: null,
+                            render: ({printer})=>{
+                                if(printer == null){
+                                    return ``;
+                                }
+                                return `${printer.description}`;
+                            }
                         },
                         {
                             title: 'Brand',
@@ -83,6 +112,9 @@
                             render: ({
                                 brand
                             }) => {
+                                if (brand == null) {
+                                    return ``;
+                                }
                                 let id = brand.id;
                                 if (id <= 1) {
                                     return ``;
