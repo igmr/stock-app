@@ -71,7 +71,7 @@
                                         </div>
                                         <input type="text"
                                             class="form-control @error('date_init') is-invalid @enderror"
-                                            name="date_init" id="date_init" placeholder="2024-01-01"
+                                            name="date_init" id="date_init" placeholder="2023-12-31"
                                             value="{{ old('date_init') }}">
                                     </div>
                                     <!-- /.input group -->

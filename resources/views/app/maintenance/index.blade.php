@@ -28,11 +28,27 @@
                         },
                         {
                             title: 'Model',
-                            data: 'printer.model'
+                            data: null,
+                            render: ({
+                                printer
+                            }) => {
+                                if (printer == null) {
+                                    return ``;
+                                }
+                                return printer.model;
+                            }
                         },
                         {
                             title: 'Printer',
-                            data: 'printer.description'
+                            data: null,
+                            render: ({
+                                printer
+                            }) => {
+                                if (printer == null) {
+                                    return ``;
+                                }
+                                return printer.description;
+                            }
                         },
                         {
                             title: 'Internal',

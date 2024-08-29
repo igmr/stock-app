@@ -111,6 +111,9 @@
             color: rgb(255 249 249 / 15%) !important;
         }
 
+        .list-group-item, .item {
+            background-color: #22272a !important;
+        }
     </style>
 </head>
 

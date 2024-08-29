@@ -7,7 +7,6 @@ use App\Http\Requests\CartridgeFormRequest;
 use App\Models\Brand;
 use App\Models\Cartridge;
 use App\Models\Printer;
-use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;

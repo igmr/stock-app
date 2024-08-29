@@ -65,9 +65,6 @@ class MaintenanceController extends Controller
      */
     public function show(Maintenance $maintenance)
     {
-        $maintenance = Maintenance::with('follows')->with('archives')
-            ->with('printer')->with('user')
-            ->where('id', $maintenance->id)->get();
         $data = [
             'menu'        => 'maintenance',
             'maintenance' => $maintenance,

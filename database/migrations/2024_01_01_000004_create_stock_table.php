@@ -20,6 +20,7 @@ return new class extends Migration
             $table->double('cost')->nullable()->default(0);
             $table->smallInteger('type')->nullable()->default(1);
             $table->text('observation')->nullable();
+            $table->dateTime('date_at')->nullable()->default(now());
             $table->string('status',15)->nullable()->default('Active');
             $table->dateTime('created_at')->nullable()->default(now());
             $table->dateTime('updated_at')->nullable()->default(null);

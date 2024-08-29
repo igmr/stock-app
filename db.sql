@@ -87,9 +87,9 @@ CREATE TABLE IF NOT EXISTS brands
     user_id     INT         UNSIGNED                       NULL DEFAULT 1,
     description VARCHAR(65) COLLATE utf8mb4_unicode_ci     NULL,
     status      CHAR(15)    COLLATE utf8mb4_unicode_ci     NULL DEFAULT "Activo",
-    created_at  TIMESTAMP   COLLATE utf8mb4_unicode_ci     NULL DEFAULT NOW(),
-    updated_at  TIMESTAMP   COLLATE utf8mb4_unicode_ci     NULL DEFAULT NOW(),
-    deleted_at  TIMESTAMP   COLLATE utf8mb4_unicode_ci     NULL DEFAULT NULL,
+    created_at  TIMESTAMP                                  NULL DEFAULT NOW(),
+    updated_at  TIMESTAMP                                  NULL DEFAULT NOW(),
+    deleted_at  TIMESTAMP                                  NULL DEFAULT NULL,
     CONSTRAINT  pkBrand     PRIMARY KEY(id),
     CONSTRAINT  ukBrand     UNIQUE(description)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -108,9 +108,9 @@ CREATE TABLE IF NOT EXISTS printers
     observation TEXT         COLLATE utf8mb4_unicode_ci     NULL DEFAULT NULL,
     cost        DOUBLE                                      NULL DEFAULT 0,
     status      CHAR(15)     COLLATE utf8mb4_unicode_ci     NULL DEFAULT "Activo",
-    created_at  TIMESTAMP    COLLATE utf8mb4_unicode_ci     NULL DEFAULT NOW(),
-    updated_at  TIMESTAMP    COLLATE utf8mb4_unicode_ci     NULL DEFAULT NOW(),
-    deleted_at  TIMESTAMP    COLLATE utf8mb4_unicode_ci     NULL DEFAULT NULL,
+    created_at  TIMESTAMP                                   NULL DEFAULT NOW(),
+    updated_at  TIMESTAMP                                   NULL DEFAULT NOW(),
+    deleted_at  TIMESTAMP                                   NULL DEFAULT NULL,
     CONSTRAINT  pkPrinter    PRIMARY KEY(id),
     CONSTRAINT  ukPrinter    UNIQUE(serial)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -127,9 +127,9 @@ CREATE TABLE IF NOT EXISTS cartridges
     description VARCHAR(255) COLLATE utf8mb4_unicode_ci     NULL DEFAULT NULL,
     color       VARCHAR(65)  COLLATE utf8mb4_unicode_ci     NULL DEFAULT NULL,
     status      CHAR(15)     COLLATE utf8mb4_unicode_ci     NULL DEFAULT "Activo",
-    created_at  TIMESTAMP    COLLATE utf8mb4_unicode_ci     NULL DEFAULT NOW(),
-    updated_at  TIMESTAMP    COLLATE utf8mb4_unicode_ci     NULL DEFAULT NOW(),
-    deleted_at  TIMESTAMP    COLLATE utf8mb4_unicode_ci     NULL DEFAULT NULL,
+    created_at  TIMESTAMP                                   NULL DEFAULT NOW(),
+    updated_at  TIMESTAMP                                   NULL DEFAULT NOW(),
+    deleted_at  TIMESTAMP                                   NULL DEFAULT NULL,
     CONSTRAINT  pkCartridge  PRIMARY KEY(id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -143,9 +143,9 @@ CREATE TABLE IF NOT EXISTS files
     filename    VARCHAR(65)  COLLATE utf8mb4_unicode_ci     NULL DEFAULT NULL,
     observation TEXT         COLLATE utf8mb4_unicode_ci     NULL DEFAULT NULL,
     status      CHAR(15)     COLLATE utf8mb4_unicode_ci     NULL DEFAULT "Activo",
-    created_at  TIMESTAMP    COLLATE utf8mb4_unicode_ci     NULL DEFAULT NOW(),
-    updated_at  TIMESTAMP    COLLATE utf8mb4_unicode_ci     NULL DEFAULT NOW(),
-    deleted_at  TIMESTAMP    COLLATE utf8mb4_unicode_ci     NULL DEFAULT NULL,
+    created_at  TIMESTAMP                                   NULL DEFAULT NOW(),
+    updated_at  TIMESTAMP                                   NULL DEFAULT NOW(),
+    deleted_at  TIMESTAMP                                   NULL DEFAULT NULL,
     CONSTRAINT  pkFile       PRIMARY KEY(id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -161,9 +161,10 @@ CREATE TABLE IF NOT EXISTS stock
     type         SMALLINT                                NULL DEFAULT 1,      -- 0 - Salida del almacén || 1 - Entrada al almacén
     observation  TEXT     COLLATE utf8mb4_unicode_ci     NULL DEFAULT NULL,
     status       CHAR(15) COLLATE utf8mb4_unicode_ci     NULL DEFAULT "Activo",
-    created_at   DATETIME COLLATE utf8mb4_unicode_ci     NULL DEFAULT NULL,
-    updated_at   DATETIME COLLATE utf8mb4_unicode_ci     NULL DEFAULT NULL,
-    deleted_at   DATETIME COLLATE utf8mb4_unicode_ci     NULL DEFAULT NULL,
+    date_at      DATETIME                                NULL DEFAULT NULL,
+    created_at   DATETIME                                NULL DEFAULT NULL,
+    updated_at   DATETIME                                NULL DEFAULT NULL,
+    deleted_at   DATETIME                                NULL DEFAULT NULL,
     CONSTRAINT   pkStock PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -183,9 +184,9 @@ CREATE TABLE IF NOT EXISTS maintenances
     observation_finish TEXT        COLLATE utf8mb4_unicode_ci     NULL DEFAULT NULL,
     observation_cancel TEXT        COLLATE utf8mb4_unicode_ci     NULL DEFAULT NULL,
     status             CHAR(30)    COLLATE utf8mb4_unicode_ci     NULL DEFAULT "Activo",
-    created_at         DATETIME    COLLATE utf8mb4_unicode_ci     NULL DEFAULT NOW(),
-    updated_at         DATETIME    COLLATE utf8mb4_unicode_ci     NULL DEFAULT NOW(),
-    deleted_at         DATETIME    COLLATE utf8mb4_unicode_ci     NULL DEFAULT NULL,
+    created_at         DATETIME                                   NULL DEFAULT NOW(),
+    updated_at         DATETIME                                   NULL DEFAULT NOW(),
+    deleted_at         DATETIME                                   NULL DEFAULT NULL,
     CONSTRAINT         pkMaintenance PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -199,9 +200,9 @@ CREATE TABLE IF NOT EXISTS archives
     file           VARCHAR(255) COLLATE utf8mb4_unicode_ci     NULL DEFAULT NULL,
     observation    TEXT         COLLATE utf8mb4_unicode_ci     NULL DEFAULT NULL,
     status         CHAR(15)     COLLATE utf8mb4_unicode_ci     NULL DEFAULT "Activo",
-    created_at     DATETIME     COLLATE utf8mb4_unicode_ci     NULL DEFAULT NULL,
-    updated_at     DATETIME     COLLATE utf8mb4_unicode_ci     NULL DEFAULT NULL,
-    deleted_at     DATETIME     COLLATE utf8mb4_unicode_ci     NULL DEFAULT NULL,
+    created_at     DATETIME                                    NULL DEFAULT NULL,
+    updated_at     DATETIME                                    NULL DEFAULT NULL,
+    deleted_at     DATETIME                                    NULL DEFAULT NULL,
     CONSTRAINT     pkStock PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -213,9 +214,9 @@ CREATE TABLE IF NOT EXISTS follows
     maintenance_id INT      UNSIGNED                       NULL DEFAULT 1,
     observation    TEXT     COLLATE utf8mb4_unicode_ci     NULL DEFAULT NULL,
     status         CHAR(15) COLLATE utf8mb4_unicode_ci     NULL DEFAULT "Activo",
-    created_at     DATETIME COLLATE utf8mb4_unicode_ci     NULL DEFAULT NULL,
-    updated_at     DATETIME COLLATE utf8mb4_unicode_ci     NULL DEFAULT NULL,
-    deleted_at     DATETIME COLLATE utf8mb4_unicode_ci     NULL DEFAULT NULL,
+    created_at     DATETIME                                NULL DEFAULT NULL,
+    updated_at     DATETIME                                NULL DEFAULT NULL,
+    deleted_at     DATETIME                                NULL DEFAULT NULL,
     CONSTRAINT     pkStock PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
