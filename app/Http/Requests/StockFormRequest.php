@@ -60,6 +60,7 @@ class StockFormRequest extends FormRequest
                             }
                         }
                     ],
+                    'date_at'     => ['required', 'string',],
                     'type'        => ['required', 'numeric',],
                     'cost'        => ['nullable', 'decimal:0,6', 'gte:0'],
                     'observation' => ['nullable', 'string', 'max:512'],

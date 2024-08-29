@@ -97,9 +97,9 @@
                             title: 'Date',
                             data: null,
                             render: ({
-                                created_at
+                                date_at
                             }) => {
-                                const createdAt = new Date(created_at);
+                                const createdAt = new Date(date_at);
                                 const option = {
                                     year: 'numeric',
                                     month: '2-digit',

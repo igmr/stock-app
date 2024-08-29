@@ -23,7 +23,7 @@ class Stock extends Model
         'id', 'user_id', 'cartridge_id',
         'quantity', '_quantity', 'cost',
         'type', 'observation', 'status',
-        'created_at',
+        'created_at', 'date_at',
     ];
     protected $hidden = [
         'updated_at', 'deleted_at',
@@ -38,6 +38,7 @@ class Stock extends Model
         'observation'  => 'string',
         'cost'         => 'double',
         'status'       => 'string',
+        'date_at'      => 'datetime',
         'created_at'   => 'datetime',
         'updated_at'   => 'datetime',
         'deleted_at'   => 'datetime',

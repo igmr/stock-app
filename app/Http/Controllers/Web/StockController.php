@@ -29,7 +29,7 @@ class StockController extends Controller
      */
     public function create()
     {
-        $cartridge = Cartridge::select(['id', 'description'])->get();
+        $cartridge = Cartridge::with('printer')->get();
         $types = [
             ['id' => 1, 'description' => 'Entrada al almacén'],
             ['id' => 0, 'description' => 'Salida del almacén'],
@@ -55,8 +55,10 @@ class StockController extends Controller
         $stock->_quantity = $data['type'] == 0 ? $data['quantity'] * -1 : $data['quantity'];
         $stock->type = $data['type'];
         $stock->observation = $data['observation'];
-        $stock->cost = $data['cost'];
+        $stock->cost = $data['cost'] ?? 0;
+        $stock->date_at = $data['date_at'];
         $stock->status = 'Active';
+        var_dump($stock);
         if ($stock->save()) {
             return redirect()->route('app.stock.index');
         }

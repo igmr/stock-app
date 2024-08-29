@@ -4,11 +4,23 @@
     $types = $data['types'];
 @endphp
 <x-master>
+
     @slot('menu', $menu)
     @slot('customJS')
         <script>
             //Initialize Select2 Elements
             $('.select2').select2()
+            // Date
+            let _date = `{!! old('date_at') !!}`;
+            if (_date == "") {
+                _date = new Date();
+            }
+            $("#date_at")
+                .datepicker({
+                    laguage: "es",
+                    format: "yyyy-mm-dd",
+                    autoclose: true,
+                }).datepicker("setDate", _date);
         </script>
     @endslot
 
@@ -51,7 +63,25 @@
                     <!-- /.card-header -->
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-12">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="date_at">Date</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                                        </div>
+                                        <input type="text"
+                                            class="form-control @error('date_at') is-invalid @enderror" name="date_at"
+                                            id="date_at" placeholder="2023-12-31" value="{{ old('date_at') }}">
+                                    </div>
+                                    <!-- /.input group -->
+                                    @error('date_at')
+                                        <code>{{ $message }}</code>
+                                    @enderror
+                                </div>
+                                <!-- /.form group -->
+                            </div>
+                            <div class="col-md-9">
                                 <div class="form-group">
                                     <label for="cartridge">Cartridge</label>
                                     <div class="input-group">
@@ -62,7 +92,7 @@
                                             @foreach ($cartridge as $item)
                                                 <option value="{{ $item->id }}"
                                                     {{ old('cartridge') == $item->id ? 'selected' : '' }}>
-                                                    {{ $item->description }}
+                                                    {{ $item->description }} || {{ $item->printer->description ?? '' }}
                                                 </option>
                                             @endforeach
                                         </select>
@@ -143,8 +173,8 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="fas fa-binoculars"></i></span>
                                         </div>
-                                        <textarea id="observation" class="form-control @error('observation') is-invalid @enderror" rows="3" name="observation"
-                                            placeholder="Cartridge observations">{{ old('observation') }}</textarea>
+                                        <textarea id="observation" class="form-control @error('observation') is-invalid @enderror" rows="3"
+                                            name="observation" placeholder="Cartridge observations">{{ old('observation') }}</textarea>
                                     </div>
                                     <!-- /.input group -->
                                     @error('observation')
